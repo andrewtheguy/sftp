@@ -92,8 +92,8 @@ fi
 
 if $startSshd; then
     log "Executing sshd"
-    exec /usr/sbin/sshd -D -e
+    exec /usr/bin/tini -- /usr/sbin/sshd -D -e
 else
     log "Executing $*"
-    exec "$@"
+    exec /usr/bin/tini -- "$@"
 fi
